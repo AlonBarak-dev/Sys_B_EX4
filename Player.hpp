@@ -18,6 +18,7 @@ namespace coup{
                 this->coins_counter = 0;
                 this->name = name;
                 this->game = g;
+                this->game.new_player(this, this->name);    // adds a new player to the game
             }
 
             Player(){   // empty constructor
