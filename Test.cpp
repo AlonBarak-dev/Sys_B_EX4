@@ -12,7 +12,7 @@
 using namespace std;
 using namespace coup;
 
-TEST_CASE("INCOME"){        // 15 tests
+TEST_CASE("INCOME & COINS"){        // 15 tests
 
     // create a game 
     Game g1{};
@@ -83,7 +83,7 @@ TEST_CASE("FOREIGN AID"){   // 14 tests
 }
 
 
-TEST_CASE("COUP & WINNER"){
+TEST_CASE("COUP & WINNER & PLAYERS"){
 
     // create a game 
     Game g1{};
