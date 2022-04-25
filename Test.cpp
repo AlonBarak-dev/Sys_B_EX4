@@ -129,7 +129,7 @@ TEST_CASE("COUP & WINNER"){
         CHECK(name != "Ambassosh");        
     }
 
-    CHECK(assassin.coins() == 1);   // coup action cost assassin 7 coins
+    CHECK(assassin.coins() == 4);   // coup action cost assassin 7 coins
 
     // play until captain have atleast 7 coins
     captain.foreign_aid();
@@ -138,7 +138,7 @@ TEST_CASE("COUP & WINNER"){
     captain.foreign_aid();
     duke.foreign_aid();
     assassin.foreign_aid();
-    // now captain have 8 coins and the rest have 5
+    // now captain have 8 coins and assassin have 6 coins and the rest have 5
 
     CHECK_NOTHROW(captain.coup(duke));     // captain coup duke out of the game
     CHECK(players_left.size() == 2);    // only 2 players are left in the game
@@ -157,9 +157,7 @@ TEST_CASE("COUP & WINNER"){
         assassin.foreign_aid();
         captain.income();
     }
-    assassin.income();
-    captain.income();
-    // now assassin have 10 coins and captain have 4
+    // now assassin have 10 coins and captain have 3
 
     CHECK_THROWS(assassin.income()); // assassin have 10 coins, must coup
     CHECK_THROWS(assassin.foreign_aid()); // assassin have 10 coins, must coup
@@ -172,7 +170,7 @@ TEST_CASE("COUP & WINNER"){
     {
         CHECK(name != "Capitano");        
     }
-    CHECK(assassin.coins() == 3);
+    CHECK(assassin.coins() == 7);
 
 
     CHECK_NOTHROW(g1.winner());
