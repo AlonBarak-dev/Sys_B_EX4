@@ -47,3 +47,37 @@ TEST_CASE("INCOME"){        // 15 tests
     CHECK(duke.coins() == 2);   // should update to 2 
 
 }
+
+
+TEST_CASE("FOREIGN AID"){   // 14 tests
+
+    // create a game 
+    Game g1{};
+    // add players to the game
+    Duke duke{g1,"Alon"};
+    Assassin assassin{g1, "Barak"};
+    Ambassador ambassador{g1, "Ambassosh"};
+    Captain captain{g1, "Capitano"};
+    Contessa contessa{g1, "Conti"};
+
+    CHECK_NOTHROW(duke.foreign_aid());  // duke turn
+    CHECK(duke.coins() == 2);   // foreign aid adds 2 coins to a player
+
+    CHECK_NOTHROW(assassin.foreign_aid());  // assassin turn
+    CHECK(assassin.coins() == 2);   // foreign aid adds 2 coins to a player
+
+    CHECK_NOTHROW(ambassador.foreign_aid());  // ambassador turn
+    CHECK(ambassador.coins() == 2);   // foreign aid adds 2 coins to a player
+
+    CHECK_NOTHROW(captain.foreign_aid());  // captain turn
+    CHECK(captain.coins() == 2);   // foreign aid adds 2 coins to a player
+
+    CHECK_NOTHROW(contessa.foreign_aid());  // contessa turn
+    CHECK(contessa.coins() == 2);   // foreign aid adds 2 coins to a player
+
+    CHECK_THROWS(assassin.foreign_aid());   // duke turn, not assassin
+    CHECK_THROWS(ambassador.foreign_aid()); // duke turn, not ambassador
+    CHECK_THROWS(captain.foreign_aid());    // duke turn, not captain
+    CHECK_THROWS(contessa.foreign_aid());   // duke turn, not contessa
+
+}
