@@ -14,7 +14,7 @@ namespace coup{
 
         public:
 
-            Player(coup::Game g, std::string name){   // constructor
+            Player(coup::Game &g, const std::string &name){   // constructor
                 this->coins_counter = 0;
                 this->name = name;
                 this->game = g;

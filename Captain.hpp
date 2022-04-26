@@ -9,7 +9,7 @@ namespace coup{
         private:
 
         public:
-            Captain(Game g, std::string name){
+            Captain(Game& g, const std::string &name){
                 Player(g, name);
             }
             ~Captain(){}

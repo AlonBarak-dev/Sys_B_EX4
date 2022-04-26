@@ -10,7 +10,7 @@ namespace coup{
         private:
 
         public:
-            Ambassador(Game g, std::string name){
+            Ambassador(Game &g, const std::string &name){
                 Player(g,name);
             }
             ~Ambassador(){}

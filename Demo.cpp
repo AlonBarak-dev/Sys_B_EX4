@@ -108,6 +108,7 @@ int main() {
 	players = game_1.players();
 	/*
 		prints:
+		Moshe
 		Yossi
 		Meirav
 		Reut
@@ -118,4 +119,3 @@ int main() {
 		cout << name << endl;
 	}
 }
-
