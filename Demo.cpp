@@ -31,9 +31,9 @@ int main() {
 	Ambassador ambassador{game_1, "Meirav"};
 	Captain captain{game_1, "Reut"};
 	Contessa contessa{game_1, "Gilad"};
+	
 
 	vector<string> players = game_1.players();
-
 	/*
 		prints:
 		Moshe
@@ -57,7 +57,11 @@ int main() {
 	contessa.income();
 
 	// throws exception, it is duke's turn now
+	try{
 	assassin.income();
+	}
+	catch(exception e){
+	}
 
 	duke.income();
 	assassin.foreign_aid();

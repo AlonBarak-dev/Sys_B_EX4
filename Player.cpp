@@ -1,6 +1,7 @@
 #include "Player.hpp"
 #include <vector>
 #include <string>
+#include <iostream>
 
 using namespace std;
 using namespace coup;
@@ -20,7 +21,7 @@ namespace coup{
             throw runtime_error("This Player must Coup");
         }
         
-
+        
         // a full round passed, player cannot be blocked anymore
         if (this->can_be_blocked())
         {
@@ -32,6 +33,10 @@ namespace coup{
 
         // write the player last play
         this->_last_play = "income";
+
+        // move turn
+        this->game->increament_turn();
+
 
     }
 
@@ -59,6 +64,9 @@ namespace coup{
 
         // write the player last play
         this->_last_play = "foreign aid";
+
+        // move turn
+        this->game->increament_turn();
         
     }
 
@@ -70,7 +78,7 @@ namespace coup{
 
     bool Player::is_turn(){
         // checks if the turn at the moment belongs to the player
-        return this->game.turn() == this->_name;
+        return this->game->turn() == this->_name;
     }
 
     bool Player::has_to_coup(){
@@ -113,7 +121,10 @@ namespace coup{
         this->coins_counter -=7;
 
         // remove the player p1 from the game
-        this->game.remove_player(p1.get_name(), p1.role());
+        this->game->remove_player(p1.get_name());
+
+        // move turn
+        this->game->increament_turn();
 
     }
 

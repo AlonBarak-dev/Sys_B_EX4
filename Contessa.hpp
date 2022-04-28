@@ -9,9 +9,7 @@ namespace coup{
         private:
 
         public:
-            Contessa(Game& g, const std::string &name){
-                Player(g,name, "Contessa");
-            }
+            Contessa(Game& g, const std::string &name) : Player(&g,name, "Contessa"){}
             ~Contessa(){}
             void block(Player p1);
 

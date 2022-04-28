@@ -14,7 +14,7 @@ run: demo
 	./demo
 
 demo: Demo.o $(OBJECTS)
-	$(CXX) $(CXXFLAGS) $^ -o demo
+	$(CXX) $(CXXFLAGS) $^ -g3 -o demo
 
 
 test: TestCounter.o Test.o $(OBJECTS)

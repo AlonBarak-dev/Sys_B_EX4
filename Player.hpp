@@ -6,11 +6,11 @@ namespace coup{
 
     class Player{
 
-        private:
+        protected:
 
             int coins_counter;  // amount of coins
             std::string _name;       // player name
-            coup::Game game;
+            coup::Game *game;
             bool _can_be_blocked;    // if the player played a move that can be blocked
             bool _has_to_coup;       // if the player have 10 coins
             std::string _role;   
@@ -18,12 +18,12 @@ namespace coup{
 
         public:
             // ctor
-            Player(coup::Game &g, const std::string &name, const std::string &role){
+            Player(coup::Game* g, const std::string &name, const std::string &role){
                 this->coins_counter = 0;
                 this->_name = name;
                 this->game = g;
                 this->_role = role;
-                this->game.new_player(this->_name, this->_role);
+                this->game->new_player(this->_name);
 
                 this->_can_be_blocked = false;
                 this->_has_to_coup = false;
