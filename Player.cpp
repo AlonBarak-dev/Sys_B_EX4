@@ -29,7 +29,7 @@ namespace coup{
         }
         
         // add 1 coin to the player
-        this->coins_counter++;
+        this->set_coins(this->coins_counter + 1);
 
         // write the player last play
         this->_last_play = "income";
@@ -60,7 +60,7 @@ namespace coup{
         this->_can_be_blocked = true;   // the player can be blocked for a full round
         
         // add 2 coins to the player 
-        this->coins_counter += 2;
+        this->set_coins(this->coins_counter + 2);
 
         // write the player last play
         this->_last_play = "foreign aid";
@@ -118,7 +118,7 @@ namespace coup{
         this->_last_play = "coup";
 
         // remove 7 coins from the player amount
-        this->coins_counter -=7;
+        this->set_coins(this->coins_counter - 7);
 
         // remove the player p1 from the game
         this->game->remove_player(p1.get_name());
@@ -126,6 +126,21 @@ namespace coup{
         // move turn
         this->game->increament_turn();
 
+    }
+
+    string Player::get_last_play(){
+        // return the player's last move
+        return this->_last_play;
+    }
+
+    void Player::blocked(){
+        // in case the player gets blocked, update his status
+        this->_can_be_blocked = false;
+    }
+
+    void Player::set_coins(int amount){
+        // set the coins amount to a new amount
+        this->coins_counter = amount;
     }
 
 }

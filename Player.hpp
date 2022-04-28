@@ -47,6 +47,9 @@ namespace coup{
             bool can_be_blocked();
             bool has_to_coup();
             std::string get_name();
+            std::string get_last_play();
+            void blocked();
+            void set_coins(int amount);
     };
     
 }
