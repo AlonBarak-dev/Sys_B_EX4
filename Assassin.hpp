@@ -8,12 +8,12 @@ namespace coup{
     class Assassin : public Player{
 
         private:
-            Player couped;
+            
         public:
             Assassin(Game &g, const std::string &name): Player(&g,name, "Assassin"){}
             ~Assassin(){}
-            void coup(Player p1);
-            void blocked();
+            void coup(Player& p1);
+            void blocked_by();
 
     };
 

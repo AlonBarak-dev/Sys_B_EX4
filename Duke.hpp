@@ -1,5 +1,6 @@
 #pragma once
 #include "Player.hpp"
+#include "Assassin.hpp"
 #include "Game.hpp"
 #include <iostream>
 
@@ -14,7 +15,7 @@ namespace coup{
 
             Duke(coup::Game& g, const std::string& name) : Player(&g,name, "Duke"){}
             ~Duke(){}
-            void block(Player p1);
+            void block(coup::Assassin& p1);
             void tax();
 
     };

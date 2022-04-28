@@ -30,6 +30,7 @@ namespace coup{
             std::string winner();   // tells the winner if exist
             void new_player(const std::string &name);   // adds a new player to the game
             void remove_player(const std::string &name);    // removes a player after a coup
+            void back_2_life(const std::string &name, int index);       // bring players back to the game
 
 
 

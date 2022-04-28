@@ -1,14 +1,14 @@
 #include "Duke.hpp"
 #include <string>
 #include <vector>
-
+#include <iostream>
 
 using namespace std;
 using namespace coup;
 
 namespace coup{
 
-    void Duke::block(Player p1){
+    void Duke::block(Assassin& p1){
         // this method allows the Duke to block a foreign_aid actions of differernt players
 
         if (p1.can_be_blocked() && p1.get_last_play() == "foreign aid")
@@ -16,6 +16,7 @@ namespace coup{
             // can be blocked
             p1.blocked();
             p1.set_coins(p1.coins() - 2);   // p1 returns the money back
+
         }
         else{
             throw runtime_error("Cannot be Blocked!");

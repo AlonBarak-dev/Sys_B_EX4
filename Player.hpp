@@ -15,6 +15,8 @@ namespace coup{
             bool _has_to_coup;       // if the player have 10 coins
             std::string _role;   
             std::string _last_play;
+            std::string couped;
+            int couped_idx;
 
         public:
             // ctor
@@ -50,6 +52,9 @@ namespace coup{
             std::string get_last_play();
             void blocked();
             void set_coins(int amount);
+            void blocked_by_contessa(const std::string name, int index);
+            std::string get_couped_name();
+            int get_couped_idx();
     };
     
 }

@@ -1,6 +1,7 @@
 #pragma once 
 #include "Player.hpp"
 #include "Game.hpp"
+#include "Assassin.hpp"
 #include <string>
 
 namespace coup{
@@ -11,7 +12,7 @@ namespace coup{
         public:
             Contessa(Game& g, const std::string &name) : Player(&g,name, "Contessa"){}
             ~Contessa(){}
-            void block(Player p1);
+            void block(Player& p1);
 
     };
 

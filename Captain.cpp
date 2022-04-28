@@ -6,6 +6,6 @@ using namespace std;
 using namespace coup;
 
 namespace coup{
-    void Captain::block(Player p1){}
-    void Captain::steal(Player p1){}
+    void Captain::block(Player &p1){}
+    void Captain::steal(Player &p1){}
 }

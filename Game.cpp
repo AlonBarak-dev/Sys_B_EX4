@@ -63,7 +63,12 @@ namespace coup{
             }
             
         }
-        
+    }
+
+    void Game::back_2_life(const string &name, int index){
+        // this method brings back players that couped and saved
+        this->players_names.insert(this->players_names.begin()+index, name);
+
     }
 
 }

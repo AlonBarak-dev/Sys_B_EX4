@@ -143,4 +143,18 @@ namespace coup{
         this->coins_counter = amount;
     }
 
+    void Player::blocked_by_contessa(const std::string name, int index){
+        this->game->back_2_life(this->couped, this->couped_idx);
+        this->_can_be_blocked = false;
+    }
+    
+    std::string Player::get_couped_name(){
+        return this->couped;
+
+    }
+    
+    int Player::get_couped_idx(){
+        return this->couped_idx;
+    }
+
 }
