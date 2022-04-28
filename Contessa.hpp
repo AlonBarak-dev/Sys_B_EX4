@@ -10,7 +10,7 @@ namespace coup{
 
         public:
             Contessa(Game& g, const std::string &name){
-                Player(g,name);
+                Player(g,name, "Contessa");
             }
             ~Contessa(){}
             void block(Player p1);

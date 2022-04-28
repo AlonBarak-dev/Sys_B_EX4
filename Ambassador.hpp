@@ -11,7 +11,7 @@ namespace coup{
 
         public:
             Ambassador(Game &g, const std::string &name){
-                Player(g,name);
+                Player(g,name, "Ambassador");
             }
             ~Ambassador(){}
             void transfer(Player p1, Player p2);

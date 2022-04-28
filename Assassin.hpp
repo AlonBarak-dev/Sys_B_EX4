@@ -11,7 +11,7 @@ namespace coup{
 
         public:
             Assassin(Game &g, const std::string &name){
-                Player(g,name);
+                Player(g,name, "Assassin");
             }
             ~Assassin(){}
             void coup(Player p1);

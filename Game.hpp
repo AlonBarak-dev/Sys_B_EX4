@@ -11,8 +11,8 @@ namespace coup{
 
         private:
             std::vector<std::string> players_names;   // list of all active players names
-            //std::unordered_map<std::string, coup::Player> players_map;      // pairs of names and player objects e.g (Alon, Captain)
-            std::string player_turn;    // the name of the player that this is his turn to play
+            unsigned int turn_idx;
+            std::unordered_map<std::string, std::string> players_map;      // pairs of names and players rolee e.g (Alon, Captain)
             bool active;    // tells if the game is still active
 
 
@@ -24,7 +24,8 @@ namespace coup{
             std::string turn();     // return the player turn
             std::vector<std::string> players(); // list of players
             std::string winner();   // tells the winner if exist
-            //void new_player(coup::Player* p1, std::string name);   // adds a new player to the game
+            void new_player(const std::string &name, const std::string &player_role);   // adds a new player to the game
+            void remove_player(const std::string &name, const std::string &player_role);    // removes a player after a coup
 
 
 

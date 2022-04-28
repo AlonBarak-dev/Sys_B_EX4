@@ -20,4 +20,8 @@ namespace coup{
         string str = "hi";
         return str;
     }
+
+    void Game::new_player(const std::string &name, const std::string &player_role){}   // adds a new player to the game
+    void Game::remove_player(const std::string &name, const std::string &player_role){}    // removes a player after a coup
+
 }

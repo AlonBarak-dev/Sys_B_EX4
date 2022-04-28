@@ -12,7 +12,7 @@ namespace coup{
         public:
 
             Duke(coup::Game& g, const std::string& name){
-                Player(g,name);
+                Player(g,name, "Duke");
             }
             ~Duke(){}
             void block(Player p1);
