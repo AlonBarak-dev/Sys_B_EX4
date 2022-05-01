@@ -8,13 +8,13 @@ using namespace coup;
 
 namespace coup{
 
-    void Duke::block(Assassin& p1){
+    void Duke::block(Player& p1){
         // this method allows the Duke to block a foreign_aid actions of differernt players
 
-        // check if the player is active
-        if (!this->active)
+        //check that the players are active
+        if (!this->is_active() || !p1.is_active())
         {
-            throw runtime_error("The player isn't active");
+            throw runtime_error("The players aren't active");
         }
 
         // check if both players play in the same game

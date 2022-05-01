@@ -9,6 +9,7 @@
 #include <iostream>
 #include <vector>
 
+
 using namespace std;
 using namespace coup;
 
@@ -121,6 +122,7 @@ TEST_CASE("COUP & WINNER & PLAYERS"){
 
     // assassin coup ambassador out of the game
     CHECK_NOTHROW(assassin.coup(ambassador));
+    players_left = g1.players();
     CHECK(players_left.size() == 3);    // only 3 players are left in the game
 
     // check that ambassador is out
@@ -129,7 +131,7 @@ TEST_CASE("COUP & WINNER & PLAYERS"){
         CHECK(name != "Ambassosh");        
     }
 
-    CHECK(assassin.coins() == 4);   // coup action cost assassin 7 coins
+    CHECK(assassin.coins() == 5);   // coup action cost assassin 3 coins
 
     // play until captain have atleast 7 coins
     captain.foreign_aid();
@@ -138,9 +140,10 @@ TEST_CASE("COUP & WINNER & PLAYERS"){
     captain.foreign_aid();
     duke.foreign_aid();
     assassin.foreign_aid();
-    // now captain have 8 coins and assassin have 6 coins and the rest have 5
+    // now captain have 8 coins and assassin have 9 coins and the rest have 5
 
     CHECK_NOTHROW(captain.coup(duke));     // captain coup duke out of the game
+    players_left = g1.players();
     CHECK(players_left.size() == 2);    // only 2 players are left in the game
 
     // check that duke is out
@@ -150,19 +153,17 @@ TEST_CASE("COUP & WINNER & PLAYERS"){
     }
 
     CHECK(captain.coins() == 1);   // coup action cost captain 7 coins
-
+    
     // play until assassin have 10 coins
-    for (size_t i = 0; i < 2; i++)
-    {
-        assassin.foreign_aid();
-        captain.income();
-    }
+    assassin.income();
+    captain.income();
     // now assassin have 10 coins and captain have 3
-
+    
     CHECK_THROWS(assassin.income()); // assassin have 10 coins, must coup
     CHECK_THROWS(assassin.foreign_aid()); // assassin have 10 coins, must coup
 
     CHECK_NOTHROW(assassin.coup(captain));  // assassin coup captain out of the game, assassin won
+    players_left = g1.players();
     CHECK(players_left.size() == 1);    // only 3 players are left in the game
 
     // check that ambassador is out
@@ -175,5 +176,6 @@ TEST_CASE("COUP & WINNER & PLAYERS"){
 
     CHECK_NOTHROW(g1.winner());
     CHECK(g1.winner() == "Barak");
+    
 
 }

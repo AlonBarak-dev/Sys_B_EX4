@@ -16,6 +16,11 @@ namespace coup{
 
     string Game::turn(){
         // return the player's name 
+        if (this->turn_idx >= this->players().size())
+        {
+            this->turn_idx = 0;
+        }
+        
         return this->players_names.at((size_t)this->turn_idx);
     }
 
@@ -54,11 +59,11 @@ namespace coup{
 
     void Game::remove_player(const std::string &name){
         // removes a player after a coup
-        for (int i = 0; i < this->players_names.size(); i++)
+        for (size_t i = 0; i < this->players_names.size(); i++)
         {
-            if (this->players_names.at((size_t)i) == name)
+            if (this->players_names.at(i) == name)
             {
-                this->players_names.erase(this->players_names.begin()+i);
+                this->players_names.erase(this->players_names.begin()+(int)i);
                 return;
             }
             

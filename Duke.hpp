@@ -13,9 +13,9 @@ namespace coup{
 
         public:
 
-            Duke(coup::Game& g, const std::string& name) : Player(&g,name, "Duke"){}
+            Duke(Game& g, const std::string& name) : Player(&g,name, "Duke"){}
             ~Duke(){}
-            void block(coup::Assassin& p1);
+            void block(Player& p1);
             void tax();
 
     };

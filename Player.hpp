@@ -18,6 +18,8 @@ namespace coup{
             std::string couped;
             int couped_idx;
             bool active;
+            coup::Player *looted_from{};
+            int amount;
 
         public:
             // ctor
@@ -59,6 +61,8 @@ namespace coup{
             int get_couped_idx();
             coup::Game* get_game();
             void deactivate();
+            bool is_active();
+            void block_steal();
     };
     
 }

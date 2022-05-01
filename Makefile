@@ -14,11 +14,10 @@ run: demo
 	./demo
 
 demo: Demo.o $(OBJECTS)
-	$(CXX) $(CXXFLAGS) $^ -g3 -o demo
+	$(CXX) -g3 $(CXXFLAGS) $^ -o demo
 
-
-test: TestCounter.o Test.o $(OBJECTS)
-	$(CXX) $(CXXFLAGS) $^ -o test
+test: Test.o TestCounter.o $(OBJECTS)
+	$(CXX) -g3 $(CXXFLAGS) $^ -o test
 
 tidy:
 	clang-tidy $(SOURCES) $(TIDY_FLAGS) --
@@ -28,7 +27,7 @@ valgrind: demo test
 	valgrind --tool=memcheck $(VALGRIND_FLAGS) ./test 2>&1 | { egrep "lost| at " || true; }
 
 %.o: %.cpp
-	$(CXX) $(CXXFLAGS) --compile $< -o $@
+	$(CXX) -g3 $(CXXFLAGS) --compile $< -o $@
 
 clean:
 	rm -f *.o demo test
