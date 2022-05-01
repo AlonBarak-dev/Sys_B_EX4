@@ -10,6 +10,18 @@ namespace coup{
         // this method allows the assassin to coup players at cost of 3 coins
         // can be blocked by the Contessa
 
+        // check if the player is active
+        if (!this->active)
+        {
+            throw runtime_error("The player isn't active");
+        }
+
+        // check if both players play in the same game
+        if (this->get_game() != p1.get_game())
+        {
+            throw runtime_error("Players must be from the same game");
+        }
+
         if (!this->is_turn())
         {
             throw runtime_error("Not his turn to play!");

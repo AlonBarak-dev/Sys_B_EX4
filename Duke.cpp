@@ -11,6 +11,18 @@ namespace coup{
     void Duke::block(Assassin& p1){
         // this method allows the Duke to block a foreign_aid actions of differernt players
 
+        // check if the player is active
+        if (!this->active)
+        {
+            throw runtime_error("The player isn't active");
+        }
+
+        // check if both players play in the same game
+        if (this->get_game() != p1.get_game())
+        {
+            throw runtime_error("Players must be from the same game");
+        }
+
         if (p1.can_be_blocked() && p1.get_last_play() == "foreign aid")
         {
             // can be blocked
@@ -24,6 +36,13 @@ namespace coup{
     }
 
     void Duke::tax(){
+
+        // check if the player is active
+        if (!this->active)
+        {
+            throw runtime_error("The player isn't active");
+        }
+
         // this method allows the Dukw to tax 3 coins, cannot be blocked
         if (!this->is_turn())
         {

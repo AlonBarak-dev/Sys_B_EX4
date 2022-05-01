@@ -20,6 +20,12 @@ namespace coup{
         {
             throw runtime_error("This Player must Coup");
         }
+
+        // check if the player is active
+        if (!this->active)
+        {
+            throw runtime_error("The player isn't active");
+        }
         
         
         // a full round passed, player cannot be blocked anymore
@@ -55,6 +61,12 @@ namespace coup{
         if (this->has_to_coup())
         {
             throw runtime_error("This Player must Coup");
+        }
+
+        // check if the player is active
+        if (!this->active)
+        {
+            throw runtime_error("The player isn't active");
         }
 
         this->_can_be_blocked = true;   // the player can be blocked for a full round
@@ -110,6 +122,18 @@ namespace coup{
             throw runtime_error("Need atleast 7 coins to preform Coup");
         }
         
+        // check if the player is active
+        if (!this->active)
+        {
+            throw runtime_error("The player isn't active");
+        }
+
+        // check if both players play in the same game
+        if (this->get_game() != p1.get_game())
+        {
+            throw runtime_error("Players must be from the same game");
+        }
+        
         
         // full round passed, no longer can be blocked
         this->_can_be_blocked = false;
@@ -155,6 +179,14 @@ namespace coup{
     
     int Player::get_couped_idx(){
         return this->couped_idx;
+    }
+
+    coup::Game* Player::get_game(){
+        return this->game;
+    }
+
+    void Player::deactivate(){
+        this->active = false;
     }
 
 }

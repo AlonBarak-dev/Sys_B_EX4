@@ -13,6 +13,18 @@ namespace coup{
         // this method allows Contessa to block the assassin 
         // action and bring the couped player back to life
 
+        // check if the player is active
+        if (!this->active)
+        {
+            throw runtime_error("The player isn't active");
+        }
+
+        // check if both players play in the same game
+        if (this->get_game() != p1.get_game())
+        {
+            throw runtime_error("Players must be from the same game");
+        }
+
         if (!(p1.role() == "Assassin"))
         {
             throw runtime_error("Contessa can only block Assassin");

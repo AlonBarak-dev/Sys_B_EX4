@@ -17,6 +17,7 @@ namespace coup{
             std::string _last_play;
             std::string couped;
             int couped_idx;
+            bool active;
 
         public:
             // ctor
@@ -29,6 +30,7 @@ namespace coup{
 
                 this->_can_be_blocked = false;
                 this->_has_to_coup = false;
+                this->active = true;
             }
 
             Player(){   // empty constructor
@@ -55,6 +57,8 @@ namespace coup{
             void blocked_by_contessa(const std::string name, int index);
             std::string get_couped_name();
             int get_couped_idx();
+            coup::Game* get_game();
+            void deactivate();
     };
     
 }
