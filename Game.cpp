@@ -42,7 +42,7 @@ namespace coup{
             // throw
             throw runtime_error("No winner yet");
         }
-        else{
+        {
             // return the last player on the list
             this->active = false;
             return this->players_names.at(0);

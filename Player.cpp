@@ -2,7 +2,8 @@
 #include <vector>
 #include <string>
 #include <iostream>
-
+constexpr auto MAX_COINS = 10;
+constexpr auto COUP_COST =  7;
 using namespace std;
 using namespace coup;
 
@@ -93,21 +94,21 @@ namespace coup{
         return this->game->turn() == this->_name;
     }
 
-    bool Player::has_to_coup(){
+    bool Player::has_to_coup() const{
         // check if the next play must be coup
-        return this->coins() >= 10;
+        return this->coins() >= MAX_COINS;
     }
 
-    bool Player::can_be_blocked(){
+    bool Player::can_be_blocked() const{
         // checks if the player can be blocked base on his last action
         return this->_can_be_blocked;
     }
 
-    string Player::get_name(){
+    string Player::get_name() const{
         return this->_name;
     }
 
-    void Player::coup(Player p1){
+    void Player::coup(Player &p1){
         // this method allows a player to remove other players from the game
         // this method cannot be blocked, but cost 7 coins
         
@@ -123,7 +124,7 @@ namespace coup{
         }
         
         // check if the player have atleast 7 coins
-        if (this->coins_counter < 7)
+        if (this->coins_counter < COUP_COST)
         {
             throw runtime_error("Need atleast 7 coins to preform Coup");
         }
@@ -143,7 +144,7 @@ namespace coup{
         this->_last_play = "coup";
 
         // remove 7 coins from the player amount
-        this->set_coins(this->coins_counter - 7);
+        this->set_coins(this->coins_counter - COUP_COST);
 
         // remove the player p1 from the game
         this->game->remove_player(p1.get_name());
@@ -153,7 +154,7 @@ namespace coup{
 
     }
 
-    string Player::get_last_play(){
+    string Player::get_last_play() const{
         // return the player's last move
         return this->_last_play;
     }
@@ -168,21 +169,21 @@ namespace coup{
         this->coins_counter = amount;
     }
 
-    void Player::blocked_by_contessa(const std::string name, int index){
+    void Player::blocked_by_contessa(const std::string &name, int index){
         this->game->back_2_life(this->couped, this->couped_idx);
         this->_can_be_blocked = false;
     }
     
-    std::string Player::get_couped_name(){
+    std::string Player::get_couped_name() const{
         return this->couped;
 
     }
     
-    int Player::get_couped_idx(){
+    int Player::get_couped_idx() const{
         return this->couped_idx;
     }
 
-    coup::Game* Player::get_game(){
+    coup::Game* Player::get_game() const{
         return this->game;
     }
 
@@ -190,7 +191,7 @@ namespace coup{
         this->active = false;
     }
 
-    bool Player::is_active(){
+    bool Player::is_active() const{
         return this->active;
     }
 

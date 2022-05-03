@@ -2,11 +2,14 @@
 #include <string>
 #include <vector>
 #include <iostream>
-
+constexpr auto COUP_CHEAP = 3;
+constexpr auto UP =  6;
+constexpr auto COUP_COINS = 7;
 using namespace std;
 using namespace coup;
 
 namespace coup{
+
     void Assassin::coup(Player& p1){
         // this method allows the assassin to coup players at cost of 3 coins
         // can be blocked by the Contessa
@@ -29,12 +32,12 @@ namespace coup{
         }
         
         // check if the player have atleast 3 coins
-        if (this->coins_counter < 3)
+        if (this->coins_counter < COUP_CHEAP)
         {
             throw runtime_error("Need atleast 3 coins to preform Coup as Assassin");
         }
 
-        else if (this->coins() > 3 && this->coins() < 6)
+        if (this->coins() >= COUP_CHEAP && this->coins() <= UP)
         {   // SPECIAL COUP
             // can be blocked by the Contessa
             this->_can_be_blocked = true;
@@ -64,7 +67,7 @@ namespace coup{
             this->_last_play = "coup7";
 
             //remove 7 coins from the player amount
-            this->set_coins(this->coins() - 7);
+            this->set_coins(this->coins() - COUP_COINS);
         }
         
 

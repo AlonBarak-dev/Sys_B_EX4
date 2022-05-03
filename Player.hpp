@@ -46,22 +46,22 @@ namespace coup{
 
             void income();
             void foreign_aid();
-            virtual void coup(coup::Player p1);
+            virtual void coup(coup::Player &p1);
             int coins() const;
             std::string role();
             bool is_turn();
-            bool can_be_blocked();
-            bool has_to_coup();
-            std::string get_name();
-            std::string get_last_play();
+            bool can_be_blocked() const;
+            bool has_to_coup() const;
+            std::string get_name() const;
+            std::string get_last_play() const;
             void blocked();
             void set_coins(int amount);
-            void blocked_by_contessa(const std::string name, int index);
-            std::string get_couped_name();
-            int get_couped_idx();
-            coup::Game* get_game();
+            void blocked_by_contessa(const std::string &name, int index);
+            std::string get_couped_name() const;
+            int get_couped_idx() const;
+            coup::Game* get_game() const;
             void deactivate();
-            bool is_active();
+            bool is_active() const;
             void block_steal();
     };
     

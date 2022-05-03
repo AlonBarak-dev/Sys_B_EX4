@@ -29,8 +29,8 @@ namespace coup{
         {
             throw runtime_error("Contessa can only block Assassin");
         }
-        else if(!p1.can_be_blocked() || !(p1.get_last_play() == "coup")){
-            throw runtime_error("Assassin didn't preform coup, therefore cannot be blocked");
+        if(!p1.can_be_blocked() || !(p1.get_last_play() == "coup3")){
+            throw runtime_error("Assassin didn't preform coup at cost 3, therefore cannot be blocked");
         }
 
         // block the assassin action
