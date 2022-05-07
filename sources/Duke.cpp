@@ -23,6 +23,11 @@ namespace coup{
             throw runtime_error("Players must be from the same game");
         }
 
+        if (!this->game->is_active())
+        {
+            throw runtime_error("Game isn't active");
+        }
+
         if (p1.can_be_blocked() && p1.get_last_play() == "foreign aid")
         {
             // can be blocked
@@ -36,7 +41,12 @@ namespace coup{
     }
 
     void Duke::tax(){
-
+        
+        if (!this->game->is_active())
+        {
+            throw runtime_error("Game isn't active");
+        }
+        
         // check if the player is active
         if (!this->active)
         {
@@ -47,6 +57,11 @@ namespace coup{
         if (!this->is_turn())
         {
             throw runtime_error("Not his turn to play!");
+        }
+
+        if (!this->game->is_on())
+        {
+            this->game->start_game();
         }
 
         // update that the Duke cannot be blocked

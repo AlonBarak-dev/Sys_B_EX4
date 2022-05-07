@@ -22,6 +22,11 @@ namespace coup{
             throw runtime_error("Players must be from the same game");
         }
 
+        if (!this->game->is_active())
+        {
+            throw runtime_error("Game isn't active");
+        }
+
         // check that the player is a Captain 
         if (p1.role() != "Captain")
         {
@@ -59,6 +64,11 @@ namespace coup{
         if (p1.coins() < 1)
         {
             throw runtime_error("PLayer 1 must have atleast 1 coin to his name");
+        }
+
+        if (!this->game->is_on())
+        {
+            this->game->start_game();
         }
 
         // transfer 1 coin from p1 to p2

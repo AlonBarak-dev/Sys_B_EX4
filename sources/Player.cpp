@@ -11,6 +11,13 @@ namespace coup{
 
     void Player::income(){
         // this method adds 1 coin to the player and cannot be blocked
+        
+
+        if (!this->game->is_active())
+        {
+            throw runtime_error("Game isn't active");
+        }
+        
 
         if (!this->is_turn())
         {
@@ -23,11 +30,15 @@ namespace coup{
         }
 
         // check if the player is active
-        if (!this->active)
+        if (!this->is_active())
         {
             throw runtime_error("The player isn't active");
         }
         
+        if (!this->game->is_on())
+        {
+            this->game->start_game();
+        }
         
         // a full round passed, player cannot be blocked anymore
         if (this->can_be_blocked())
@@ -54,6 +65,12 @@ namespace coup{
 
     void Player::foreign_aid(){
         // this method adds 2 coins to the player and can be blocked
+
+        if (!this->game->is_active())
+        {
+            throw runtime_error("Game isn't active");
+        }
+
         if (!this->is_turn())
         {
             throw runtime_error("Not his turn to play!");
@@ -65,9 +82,14 @@ namespace coup{
         }
 
         // check if the player is active
-        if (!this->active)
+        if (!this->is_active())
         {
             throw runtime_error("The player isn't active");
+        }
+
+        if (!this->game->is_on())
+        {
+            this->game->start_game();
         }
 
         this->_can_be_blocked = true;   // the player can be blocked for a full round
@@ -111,6 +133,11 @@ namespace coup{
     void Player::coup(Player &p1){
         // this method allows a player to remove other players from the game
         // this method cannot be blocked, but cost 7 coins
+
+        if (!this->game->is_active())
+        {
+            throw runtime_error("Game isn't active");
+        }
         
         // check if the player is active
         if (!this->is_active() || !p1.is_active())
@@ -146,11 +173,13 @@ namespace coup{
         // remove 7 coins from the player amount
         this->set_coins(this->coins_counter - COUP_COST);
 
+        // move turn
+        this->game->increament_turn();
+
         // remove the player p1 from the game
         this->game->remove_player(p1.get_name());
 
-        // move turn
-        this->game->increament_turn();
+        p1.deactivate();
 
     }
 
@@ -172,6 +201,11 @@ namespace coup{
     void Player::blocked_by_contessa(const std::string &name, int index){
         this->game->back_2_life(this->couped, this->couped_idx);
         this->_can_be_blocked = false;
+        if (this->game->get_turn_idx() >= index)
+        {
+            this->game->increament_turn();
+        }
+        
     }
     
     std::string Player::get_couped_name() const{
@@ -191,8 +225,12 @@ namespace coup{
         this->active = false;
     }
 
+    void Player::activate(){
+        this->active = true;
+    }
+
     bool Player::is_active() const{
-        return this->active;
+        return this->game->in_game(this->_name);
     }
 
     void Player::block_steal(){

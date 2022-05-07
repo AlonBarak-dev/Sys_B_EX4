@@ -26,6 +26,11 @@ namespace coup{
             throw runtime_error("Players must be from the same game");
         }
 
+        if (!this->game->is_active())
+        {
+            throw runtime_error("Game isn't active");
+        }
+        
         if (!this->is_turn())
         {
             throw runtime_error("Not his turn to play!");
@@ -70,12 +75,14 @@ namespace coup{
             this->set_coins(this->coins() - COUP_COINS);
         }
         
+        // move turn
+        this->game->increament_turn();
+
+        p1.deactivate();
 
         // remove the player p1 from the game
         this->game->remove_player(p1.get_name());
 
-        // move turn
-        this->game->increament_turn();
     }
 
 }

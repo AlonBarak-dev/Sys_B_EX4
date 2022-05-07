@@ -15,6 +15,11 @@ namespace coup{
             throw runtime_error("The players aren't active");
         }
 
+        if (!this->game->is_active())
+        {
+            throw runtime_error("Game isn't active");
+        }
+
         // check that the players are from the same game
         if (this->get_game() != p1.get_game())
         {
@@ -46,13 +51,27 @@ namespace coup{
         {
             throw runtime_error("The players aren't active");
         }
+        
+        if (!this->game->is_active())
+        {
+            throw runtime_error("Game isn't active");
+        }
+        
+        if (!this->is_turn())
+        {
+            throw runtime_error("Not his turn to play!");
+        }
 
         // check that the players are from the same game
         if (this->get_game() != p1.get_game())
         {
             throw runtime_error("Players must be from the same game");
         }
-
+        
+        if (!this->game->is_on())
+        {
+            this->game->start_game();
+        }
         // transfer 1 coins from p1 to the captain
         if (p1.coins() == 1)
         {

@@ -25,6 +25,11 @@ namespace coup{
             throw runtime_error("Players must be from the same game");
         }
 
+        if (!this->game->is_active())
+        {
+            throw runtime_error("Game isn't active");
+        }
+
         if (!(p1.role() == "Assassin"))
         {
             throw runtime_error("Contessa can only block Assassin");
@@ -34,7 +39,7 @@ namespace coup{
         }
 
         // block the assassin action
-        p1.blocked_by_contessa(p1.get_couped_name(), p1.get_couped_idx());;
+        p1.blocked_by_contessa(p1.get_couped_name(), p1.get_couped_idx());
         
         
     }

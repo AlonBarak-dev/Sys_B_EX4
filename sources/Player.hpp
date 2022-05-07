@@ -61,6 +61,7 @@ namespace coup{
             int get_couped_idx() const;
             coup::Game* get_game() const;
             void deactivate();
+            void activate();
             bool is_active() const;
             void block_steal();
     };
